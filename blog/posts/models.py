@@ -31,3 +31,5 @@ class Post(models.Model):
         ordering = ['-created_at']
     def __str__(self):
         return " ".join(self.text.split()[:5]) + ("..." if len(self.text.split()) > 5 else "")
+
+    # Fałszywa zmiana do commita pod merge z głównym branchem Lab 3 Zad 11
