@@ -32,3 +32,5 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Topic, TopicAdmin)
+
+# Fałszywa zmiana do commita pod merge z głównym branchem do Lab 3 Zad 11
