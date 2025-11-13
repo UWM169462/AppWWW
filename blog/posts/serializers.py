@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.utils import timezone
 from .models import Category, Topic, Post
 
 
@@ -39,6 +40,20 @@ class PostSerializer(serializers.ModelSerializer):
             'created_by_username'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
+
+        def validate_title(self, value):
+            if not all(char.isalpha() or char.isspace() for char in value):
+                raise serializers.ValidationError(
+                    "Nazwa posta może zawierać tylko litery i spacje!"
+                )
+            return value
+
+        def validate_created_at(self, value):
+            if value > timezone.now():
+                raise serializers.ValidationError(
+                    "Data dodania nie może być z przyszłości!"
+                )
+            return value
 
 
 # Serializator ogólny (nie dziedziczący po ModelSerializer)
