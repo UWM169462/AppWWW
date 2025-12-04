@@ -17,11 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from debug_toolbar.toolbar import debug_toolbar_urls
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('posts.urls')),
     path('', include('posts.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
 
 ] + debug_toolbar_urls()

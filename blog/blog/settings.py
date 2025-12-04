@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'posts',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -151,4 +152,8 @@ REST_FRAMEWORK = {
         'posts.permissions.CustomDjangoModelPermissions',
 
     ]
+}
+
+GRAPHENE = {
+    "SCHEMA": "blog.schema.schema",
 }
